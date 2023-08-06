@@ -1,0 +1,48 @@
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="number"],
+input[type="text"] {
+  width: 200px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button[type="submit"],
+button[type="reset"] {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover,
+button[type="reset"]:hover {
+  background-color: #0056b3;
+}
+
+/* Add some spacing between the forms */
+form + form {
+  margin-top: 20px;
+}
+
+.itemsList {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  margin-bottom: 10px;
+  .delete {
+    margin-left: auto;
+    padding: 5px;
+  }
+}

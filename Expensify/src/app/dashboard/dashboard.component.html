@@ -1,0 +1,36 @@
+<main>
+  <header>
+    <nav>
+      <div class="menu">
+        <div class="logo">
+          <h3>Expensify</h3>
+        </div>
+        <ul>
+          <li><button>home</button></li>
+          <li><button>home</button></li>
+          <li><button>home</button></li>
+          <li><button>home</button></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <article>
+    <div class="form-con">
+      <form (ngSubmit)="show(showExpenseForm)" #showExpenseForm="ngForm">
+        <input type="month" [(ngModel)]="date" name="start" />
+        <button type="submit">submit</button>
+      </form>
+    </div>
+  </article>
+  <aside>
+    <!-- <h3>List Items</h3> -->
+    <header>
+      <header><h3>Your Current Balance:</h3></header>
+      <article>
+        <h3>{{ this.income }}</h3>
+      </article>
+    </header>
+    <article>content</article>
+  </aside>
+  <footer>footer</footer>
+</main>

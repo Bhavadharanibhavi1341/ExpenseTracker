@@ -1,0 +1,353 @@
+.modal-body {
+  background: #1b1b1b;
+  position: absolute;
+  transform: translate(10%, 50%);
+  height: fit-content;
+  width: 500px;
+  padding-bottom: 50px;
+}
+
+.modal-body form {
+  padding-top: 40px;
+  padding-bottom: 5px;
+  padding-left: 100px;
+  align-items: center;
+}
+.modal-body form button {
+  color: #1b1b1b;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: aliceblue;
+  border: none;
+  width: fit-content;
+  border: none;
+  display: inline;
+}
+.modal-body .button {
+  display: inline;
+  width: max-content;
+  padding-left: 0px;
+  padding-right: 40px;
+}
+
+.modal-body .button button {
+  padding: 10px 15px;
+}
+.modal-body form .title {
+  font-weight: lighter;
+  color: aliceblue;
+  padding-left: 25px;
+  font-size: 10px;
+}
+.modal-body form .title h3 {
+  font-size: 20px;
+}
+.modal-body form input {
+  width: 300px;
+  height: 40px;
+  border: none;
+}
+.modal-body form .button button {
+  border: none;
+}
+/* .img {
+  background-color: #000;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.img::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+.center {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 0 20px;
+  text-align: center;
+}
+.center .title {
+  color: #fff;
+  font-size: 55px;
+  font-weight: 600;
+} */
+main {
+  display: grid;
+  grid-template-areas:
+    "head head head"
+    "content content side"
+    "foot foot foot";
+  grid-template-rows: 10vh 80vh 10vh;
+  grid-template-columns: 30% 40% 30%;
+}
+header {
+  grid-area: head;
+  background-color: aliceblue;
+}
+header nav {
+  position: fixed;
+  background: #1b1b1b;
+  width: 100%;
+  height: 10vh;
+  padding: 10px 0;
+  z-index: 12;
+}
+header nav .menu {
+  max-width: 1500px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header nav .menu .logo a {
+  text-decoration: none;
+}
+
+header nav .menu .logo a h3 {
+  text-decoration: none;
+  padding-left: 0%;
+  margin-left: 0%;
+  color: white;
+  font-size: 35px;
+  font-family: cursive;
+}
+header .menu ul {
+  display: inline-flex;
+}
+header .menu ul li {
+  list-style: none;
+  margin-left: 7px;
+  margin-top: 3px;
+}
+header .menu ul li:first-child {
+  margin-left: 0px;
+}
+header .menu ul li a {
+  margin-top: 40px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 3px 15px;
+  border-radius: 5px;
+  /* transition: all 0.3s ease; */
+  align-items: center;
+  justify-content: center;
+}
+header .menu ul li button {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: #1b1b1b;
+  border: none;
+  /* transition: all 0.3s ease; */
+}
+header .menu ul li a:hover {
+  border: 2px solid white;
+  color: azure;
+}
+header .menu ul li button:hover {
+  border: 2px solid white;
+  color: azure;
+}
+article {
+  grid-area: content;
+  background-color: black;
+  overflow: hidden;
+}
+article h3 {
+  color: azure;
+  text-align: center;
+
+  font-size: 55px;
+  font-weight: 600;
+  justify-content: center;
+  position: absolute;
+  top: 40%;
+  left: 32%;
+  transform: translate(-50%, -50%);
+  padding: 0 20px;
+}
+aside {
+  grid-area: side;
+  background-color: rgb(83, 82, 81);
+}
+aside {
+  display: grid;
+  grid-template-areas:
+    "head "
+    "content ";
+  grid-template-rows: 10% 90%;
+}
+
+aside header {
+  grid-area: head;
+  background-color: rgb(83, 82, 81);
+  border-bottom: 1px solid black;
+}
+aside article {
+  grid-area: content;
+  background-color: rgb(83, 82, 81);
+  padding-top: 3%;
+  overflow: auto;
+}
+
+.parent {
+  display: flex;
+  width: 100%;
+  height: max-content;
+  display: flex;
+  align-items: flex-start;
+  color: azure;
+  font-weight: bolder;
+  font-size: medium;
+  padding-bottom: 6%;
+}
+.parent .title {
+  padding-top: 3%;
+  padding-left: 18%;
+}
+.parent .title h3 {
+  font-weight: bolder;
+  font-size: larger;
+}
+.parent .button {
+  font-weight: bolder;
+  font-size: large;
+  padding-left: 2%;
+  padding-top: 2%;
+}
+.parent .button button {
+  font-weight: bolder;
+  font-size: large;
+  color: azure;
+  background: none;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.parent .button button:hover {
+  border: 1px solid azure;
+}
+
+.flex-parent-element {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2%;
+  padding-left: 5%;
+  padding-bottom: 5%;
+  padding-right: 3%;
+  font-size: medium;
+  font-weight: bolder;
+  color: azure;
+  border-bottom: 1px solid rgb(121, 119, 119);
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(83, 82, 81);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(83, 82, 81);
+}
+scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+scrollbar-thumb:hover {
+  background-color: #888;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.amt {
+  margin-left: auto;
+}
+
+footer {
+  grid-area: foot;
+  background-color: #1b1b1b;
+  overflow: hidden;
+}
+footer {
+  display: grid;
+  grid-template-areas: "head content foot";
+  grid-template-columns: 30% 40% 30%;
+}
+footer header {
+  grid-area: head;
+  background-color: #1b1b1b;
+  color: whitesmoke;
+  border: 2px solid rgb(121, 119, 119);
+}
+footer article {
+  grid-area: content;
+  background-color: #1b1b1b;
+  color: whitesmoke;
+  border: 2px solid rgb(121, 119, 119);
+}
+footer footer {
+  grid-area: foot;
+  background-color: #1b1b1b;
+  color: whitesmoke;
+  border: 2px solid rgb(121, 119, 119);
+}
+footer footer .container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 100%;
+  gap: 80px;
+  margin: 0 auto;
+  padding-left: 50%;
+}
+footer footer .item {
+  padding: 10px;
+  width: 210%;
+  font-weight: bolder;
+  font-size: large;
+}
+footer footer .item1 {
+  padding: 10px;
+  width: 210%;
+  font-weight: bolder;
+  font-size: large;
+  padding-top: 28%;
+}
+
+footer header .container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 100%;
+  gap: 2%;
+  margin: 0 auto;
+  padding-top: 4%;
+  padding-left: 20%;
+}
+footer header .item {
+  padding: 10px;
+  width: max-content;
+  font-weight: bolder;
+  font-size: large;
+  padding-top: 3%;
+}

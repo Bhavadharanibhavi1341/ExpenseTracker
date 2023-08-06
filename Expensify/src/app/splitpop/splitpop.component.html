@@ -1,0 +1,62 @@
+<div mat-dialog-actions class="content">
+  <div class="form-con">
+    <h3>{{ this.inputdata.title }}</h3>
+    <form #expenseform="ngForm" (ngSubmit)="Add(expenseform)">
+      <input
+        [(ngModel)]="splitPayName"
+        type="string"
+        name="name"
+        required
+        placeholder="enter expense name"
+      />
+      <br />
+
+      <input
+        type="text"
+        id="search"
+        [(ngModel)]="searchValue"
+        required
+        placeholder="search here"
+        name="searchValue"
+      />
+      <div class="itemsList" *ngFor="let i of details; let k = index">
+        <div class="flex-parent-element">
+          <div class="item">
+            <div class="name">
+              {{ i.UserName }}
+            </div>
+            <button (click)="details.splice(k, 1); delete()">X</button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="itemsList"
+        *ngFor="let i of userList | searchfilter : searchValue; let k = index"
+      >
+        <div class="flex-parent-element">
+          <div class="item" (click)="add1(i.UserName)">
+            <div class="name">
+              {{ i.UserName }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <div class="button">
+        <button type="submit" class="btn2">Add</button>
+        <button
+          type="button"
+          class="btn1"
+          data-dismiss="modal"
+          (click)="close1()"
+          mat-raised-button
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- <button (click)="Add()" mat-raised-button>Add</button> -->
+</div>

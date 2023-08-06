@@ -1,0 +1,77 @@
+<ng-template #template let-modal>
+  <div class="modal-body">
+    <form (ngSubmit)="temsubmit(addTemForm)" #addTemForm="ngForm">
+      <div class="title"><h3>Enter the Amount</h3></div>
+
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="amt"
+        name="uIncome1"
+        placeholder="Here.."
+      />
+
+      <!--
+--><br />
+      <div class="button">
+        <button type="submit" (click)="modal.dismiss('Cross click')">
+          Add
+        </button>
+      </div>
+      <div class="button">
+        <button type="button" (click)="modal.dismiss('Cross click')">
+          cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<main>
+  <header>
+    <nav>
+      <div class="menu">
+        <div class="logo">
+          <a href=""><h3>Expensify</h3></a>
+        </div>
+        <ul>
+          <li>
+            <button (click)="addGroup()" mat-raised-button>Add Group</button>
+          </li>
+          <li><button routerLink="/home">home</button></li>
+          <li><button routerLink="/login">Logout</button></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <article>
+    <div class="itemsList1" *ngFor="let i of groupName; let k = index">
+      <div class="flex-parent-element1" (click)="show(i)">
+        <div class="item1">
+          <div class="name1">{{ i }}</div>
+        </div>
+      </div>
+    </div>
+  </article>
+  <aside>
+    <div class="table">
+      <div class="table-row" *ngFor="let i of details; let k = index">
+        <div class="table-cell">
+          <div class="name">{{ i.UserName }}</div>
+        </div>
+        <div class="table-cell">
+          <div class="info">Paid: {{ i.paid }}</div>
+        </div>
+        <div class="table-cell">
+          <div class="info">ToPay: {{ i.toPay }}</div>
+        </div>
+        <div class="table-cell">
+          <div class="info">ToGet: {{ i.toGet }}</div>
+        </div>
+        <div class="table-cell">
+          <button (click)="openModal(template); change(i.UserName)">Pay</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+</main>

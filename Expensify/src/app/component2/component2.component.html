@@ -1,0 +1,22 @@
+<form #expenseform="ngForm" (ngSubmit)="add()">
+  <label>Add an Expense : </label>
+  <input [(ngModel)]="expense" type="text" name="expense" />
+  <button type="reset" (click)="expenses(expenseform.value)">ADD</button>
+  <button type="submit">Confirm</button>
+  <div class="content">
+    <div class="itemsList" *ngFor="let i of commonExpenses; let k = index">
+      <div class="item">{{ i }}</div>
+      <button
+        class="delete"
+        (click)="commonExpenses.splice(k, 1); deleteItem()"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+</form>
+
+<form #incomeform="ngForm" (ngSubmit)="call(incomeform)">
+  <input type="number" [(ngModel)]="Income" name="Income" />
+  <button type="submit">add income</button>
+</form>

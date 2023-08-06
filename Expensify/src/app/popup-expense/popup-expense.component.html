@@ -1,0 +1,40 @@
+<!-- <h1 mat-dialog-title></h1>
+<div mat-dialog-content></div> -->
+
+<div mat-dialog-actions class="content">
+  <div class="form-con">
+    <h3>{{ this.inputdata.title }}</h3>
+    <form #expenseform="ngForm" (ngSubmit)="Add(expenseform)">
+      <input
+        [(ngModel)]="name"
+        type="string"
+        name="name"
+        required
+        placeholder="enter expense name"
+      />
+      <br />
+
+      <input
+        [(ngModel)]="amount"
+        type="number"
+        name="amount"
+        required
+        placeholder="enter amount"
+      />
+      <br />
+      <div class="button">
+        <button type="submit" class="btn2">Add</button>
+        <button
+          type="button"
+          class="btn1"
+          data-dismiss="modal"
+          (click)="close1()"
+          mat-raised-button
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- <button (click)="Add()" mat-raised-button>Add</button> -->
+</div>

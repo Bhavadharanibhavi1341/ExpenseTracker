@@ -1,0 +1,73 @@
+<div class="body">
+  <div class="container">
+    <input type="checkbox" id="flip" />
+    <div class="cover">
+      <div class="front">
+        <img src="../../assets/images/fimage3.jpg" alt="" />
+
+        <div class="text">
+          <span class="text-1"
+            >The Importance of Spending <br /><br />
+            Money to Make</span
+          ><br />
+          <span class="text-1">Money</span>
+        </div>
+      </div>
+      <div class="back">
+        <!--<img class="backImg" src="images/backImg.jpg" alt="">-->
+        <div class="text">
+          <span class="text-1"
+            >Complete miles of journey <br />
+            with one step</span
+          >
+          <span class="text-2">Let's get started</span>
+        </div>
+      </div>
+    </div>
+    <div class="forms">
+      <div class="form-content">
+        <div class="signup-form">
+          <div class="title">Login</div>
+          <form #loginform="ngForm" (ngSubmit)="login(loginform)">
+            <div class="input-boxes"></div>
+            <div class="input-box">
+              <i class="fas fa-lock"></i>
+              <input
+                [(ngModel)]="email"
+                id="user-email"
+                class="form-content"
+                type="email"
+                autocomplete="on"
+                name="email"
+                required
+                placeholder="Enter your Email_id"
+              />
+            </div>
+            <div class="input-box">
+              <i class="fas fa-lock"></i>
+              <input
+                [(ngModel)]="password"
+                id="user-password"
+                class="form-content"
+                type="password"
+                name="password"
+                required
+                placeholder="Enter password"
+              />
+            </div>
+
+            <!-- <div class="text"><a href="#">Forgot password?</a></div> -->
+            <div class="button input-box">
+              <input type="submit" value="Sumbit" />
+            </div>
+            <div class="text sign-up-text">
+              Don't have an account?<a routerLink="/signup" id="signup">
+                signUp now</a
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
