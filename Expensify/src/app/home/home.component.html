@@ -62,62 +62,97 @@
     </form>
   </div>
 </ng-template>
-<main>
-  <header>
-    <nav>
-      <div class="menu">
-        <div class="logo">
-          <a href="#"><h3>Expensify</h3></a>
-        </div>
-        <ul>
-          <li><button routerLink="/splitpay">Split Pay</button></li>
-          <li><button (click)="openModal(Expense)">Show Expense</button></li>
-          <li><button (click)="openModal(template)">Add Income</button></li>
-          <li>
-            <button (click)="openpopup()" mat-raised-button>Add Expense</button>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
 
-  <article>
-    <h3>
-      Welcome <br /><br />
-      {{ this.name }}
-    </h3>
-  </article>
-  <aside>
-    <header>
-      <div class="parent">
-        <div class="button"><button (click)="back()">&#x25c0;</button></div>
-        <div class="title"><h3>Recent Expenses</h3></div>
+<nav>
+  <div class="menu">
+    <div class="logo">
+      <div class="sidebutton">
+        <button (click)="toggleSidenav()">
+          <mat-icon>menu</mat-icon>
+        </button>
       </div>
-    </header>
-    <article>
-      <div class="itemsList" *ngFor="let i of Expenses; let k = index">
-        <div class="flex-parent-element">
-          <div class="item">
-            <div class="name">{{ i.name }}</div>
+      <a><h3>Expensify</h3></a>
+    </div>
+    <ul>
+      <li><button routerLink="/login">LogOut</button></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+</nav>
+<mat-sidenav-container class="main-container">
+  <mat-sidenav
+    #sidenav
+    mode="side"
+    class="custom-sidenav"
+    [class.open]="isSidenavOpen"
+  >
+    <mat-nav-list class="list">
+      <ul>
+        <li><button routerLink="/splitpay">Split Pay</button></li>
+        <li>
+          <button (click)="openModal(Expense)">Show Expense</button>
+        </li>
+        <li><button (click)="openModal(template)">Add Income</button></li>
+      </ul>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main class="main-content">
+      <header></header>
+      <article>
+        <h3>
+          Welcome <br /><br />
+          {{ this.name }}
+        </h3>
+      </article>
+      <aside>
+        <header>
+          <div class="parent">
+            <div class="title">
+              <div class="button">
+                <button (click)="back()">&#x25c0;</button>
+              </div>
+
+              <h3>Recent Expenses</h3>
+            </div>
+
+            <div class="button1">
+              <button (click)="openpopup()">+</button>
+            </div>
           </div>
-          <div class="item amt">{{ i.amount }}</div>
-        </div>
-      </div>
-    </article>
-  </aside>
-  <footer>
-    <header>
-      <div class="container">
-        <div class="item">Your Savings :</div>
-        <div class="item">{{ this.savings }}</div>
-      </div>
-    </header>
-    <article></article>
-    <footer>
-      <div class="container">
-        <div class="item">Current Balance :</div>
-        <div class="item">{{ this.income }}</div>
-      </div>
-    </footer>
-  </footer>
-</main>
+        </header>
+        <article>
+          <div *ngIf="Expenses.length > 0; else elseStatement">
+            <div class="itemsList" *ngFor="let i of Expenses; let k = index">
+              <div class="flex-parent-element">
+                <div class="item">
+                  <div class="name">{{ i.name }}</div>
+                </div>
+                <div class="item amt">{{ i.amount }}</div>
+              </div>
+            </div>
+          </div>
+          <ng-template #elseStatement>
+            <h2>No recent Expenses</h2>
+          </ng-template>
+        </article>
+      </aside>
+      <footer>
+        <header>
+          <div class="container">
+            <div class="item">Your Savings :</div>
+            <div class="item">{{ this.savings }}</div>
+          </div>
+        </header>
+        <article></article>
+        <footer>
+          <div class="container">
+            <div class="item">Current Balance :</div>
+            <div class="item">{{ this.income }}</div>
+          </div>
+        </footer>
+      </footer>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

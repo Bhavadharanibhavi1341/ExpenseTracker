@@ -22,6 +22,11 @@ export class SplitPayComponent implements OnInit {
   id: string = '';
   needy: string = '';
   closeResult = '';
+  name = localStorage.getItem('name');
+  userToPay?: any;
+  userToGet?: any;
+  splitname: any;
+
   constructor(
     private http: HttpClient,
     private formBuilder: FormBuilder,
@@ -31,13 +36,25 @@ export class SplitPayComponent implements OnInit {
     private webservice: WebserviceService
   ) {}
   ngOnInit(): void {
+    this.userToGet = 0;
+    this.userToPay = 0;
     this.webservice.getGroup().subscribe((res: any) => {
       this.overAll = res;
+      console.log('heyyy');
       for (let i = 0; i < this.overAll.length; i++) {
         this.groupName.unshift(this.overAll[i].splitPayName);
       }
+      const len = this.overAll[0].details.length;
+      for (let i = 0; i < this.overAll.length; i++) {
+        for (let j = 0; j < len; j++) {
+          if (this.overAll[i].details[j].UserName == this.name) {
+            this.userToGet = this.userToGet + this.overAll[i].details[j].toGet;
+            this.userToPay = this.userToPay + this.overAll[i].details[j].toPay;
+          }
+        }
+      }
 
-      console.log(this.overAll);
+      console.log('hehello', this.userToGet, this.userToPay);
     });
   }
   change(val: string) {
@@ -46,6 +63,7 @@ export class SplitPayComponent implements OnInit {
     console.log(this.needy);
   }
   show(val: string) {
+    this.splitname = val;
     this.details = [];
     this.id = this.overAll.find((x) => x.splitPayName === val)._id;
     console.log(this.id);
@@ -54,6 +72,25 @@ export class SplitPayComponent implements OnInit {
   temsubmit(addTemForm: NgForm) {
     console.log(this.amt);
     console.log(this.details);
+    const name = this.splitname;
+    const amount = this.amt;
+    const item = { name, amount };
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + token)
+      .set('Content-Type', 'application/json');
+
+    this.http
+      .post(
+        'http://localhost:3000/api/v1/expense/dexpense',
+        { dExpense: item },
+        { headers }
+      )
+      .subscribe((result: any) => {
+        console.log(result);
+        console.log('sucss');
+        // this.router.navigate(["/signup"]);
+      });
     this.total = 0;
     const topay = this.amt / this.details.length;
     const toget = this.amt - topay;
@@ -87,10 +124,7 @@ export class SplitPayComponent implements OnInit {
       }
     }
     const toSend = { details: this.details, id: this.id };
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders()
-      .set('Authorization', 'Bearer ' + token)
-      .set('Content-Type', 'application/json');
+
     this.http
       .post(
         'http://localhost:3000/api/v1/split/upgroup',

@@ -1,4 +1,4 @@
-<form #expenseform="ngForm" (ngSubmit)="add()">
+<!-- <form #expenseform="ngForm" (ngSubmit)="add()">
   <label>Add an Expense : </label>
   <input [(ngModel)]="expense" type="text" name="expense" />
   <button type="reset" (click)="expenses(expenseform.value)">ADD</button>
@@ -19,4 +19,10 @@
 <form #incomeform="ngForm" (ngSubmit)="call(incomeform)">
   <input type="number" [(ngModel)]="Income" name="Income" />
   <button type="submit">add income</button>
-</form>
+</form> -->
+<mat-nav-list>
+  <a mat-list-item routerLink="/">Home</a>
+  <a mat-list-item routerLink="/about">About</a>
+  <a mat-list-item routerLink="/contact">Contact</a>
+  <!-- Add more links as needed -->
+</mat-nav-list>

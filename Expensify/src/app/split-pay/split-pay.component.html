@@ -35,9 +35,6 @@
           <a href=""><h3>Expensify</h3></a>
         </div>
         <ul>
-          <li>
-            <button (click)="addGroup()" mat-raised-button>Add Group</button>
-          </li>
           <li><button routerLink="/home">home</button></li>
           <li><button routerLink="/login">Logout</button></li>
         </ul>
@@ -45,16 +42,25 @@
     </nav>
   </header>
   <article>
-    <div class="itemsList1" *ngFor="let i of groupName; let k = index">
-      <div class="flex-parent-element1" (click)="show(i)">
-        <div class="item1">
-          <div class="name1">{{ i }}</div>
+    <div class="whole">
+      <div class="itemsList1" *ngIf="groupName.length > 0; else statementElse">
+        <div
+          class="flex-parent-element1"
+          *ngFor="let i of groupName; let k = index"
+        >
+          <div class="item1" (click)="show(i)">
+            <div class="name1">{{ i }}</div>
+          </div>
         </div>
+      </div>
+      <ng-template #statementElse><h2>Create Your Groups</h2> </ng-template>
+      <div class="button1">
+        <button (click)="addGroup()">+</button>
       </div>
     </div>
   </article>
   <aside>
-    <div class="table">
+    <div class="table" *ngIf="details.length != 0; else elseStatement">
       <div class="table-row" *ngFor="let i of details; let k = index">
         <div class="table-cell">
           <div class="name">{{ i.UserName }}</div>
@@ -68,10 +74,15 @@
         <div class="table-cell">
           <div class="info">ToGet: {{ i.toGet }}</div>
         </div>
-        <div class="table-cell">
+        <div class="table-cell" *ngIf="i.UserName === this.name">
           <button (click)="openModal(template); change(i.UserName)">Pay</button>
         </div>
       </div>
+    </div>
+    <div>
+      <ng-template #elseStatement
+        ><h2>Click on any item to see details</h2></ng-template
+      >
     </div>
   </aside>
 </main>

@@ -85,10 +85,12 @@ article {
   grid-area: content;
   background-color: #414040;
   color: whitesmoke;
+  overflow: auto;
 }
 aside {
   grid-area: side;
   background-color: rgb(233, 217, 217);
+  overflow: auto;
 }
 .flex-parent-element1 {
   display: flex;
@@ -101,6 +103,25 @@ aside {
   font-size: medium;
   font-weight: bolder;
   border-bottom: 1px solid rgb(121, 119, 119);
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(83, 82, 81);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(83, 82, 81);
+}
+scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+scrollbar-thumb:hover {
+  background-color: #888;
 }
 .item1 {
   display: flex;
@@ -118,11 +139,52 @@ aside {
 .table-row {
   display: table-row;
 }
+.whole {
+  position: relative; /* Required for positioning the button */
+}
+.whole .button1 {
+  margin-right: 15px;
+
+  position: fixed;
+}
+.whole .button1 button {
+  bottom: 40px;
+  left: 24%;
+  position: fixed;
+  font-size: 2.5pc;
+  font-weight: lighter;
+  padding: 15px;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  border-radius: 25px;
+  background-color: black;
+}
+.whole .button1 button:hover {
+  background-color: #888;
+}
 
 .table-cell {
   display: table-cell;
   padding: 5px;
   border: none;
+  position: relative;
+}
+aside h2 {
+  text-align: center;
+  margin-top: 20px;
+  font-family: cursive;
+  color: #888;
+  justify-content: center;
+  margin-top: 15%;
+}
+article h2 {
+  text-align: center;
+  margin-top: 20px;
+  font-family: cursive;
+  color: #888;
+  justify-content: center;
+  margin-top: 30%;
 }
 
 .name {
@@ -144,10 +206,17 @@ aside {
   background-color: transparent;
   border: none;
   font-size: large;
-  font-weight: bold;
+  position: fixed;
+  right: 30px;
+  bottom: 40px;
+  background-color: black;
+  color: whitesmoke;
+  border-radius: 25px;
+  padding: 15px;
 }
 .table-cell button:hover {
-  border: 2px solid black;
+  background-color: whitesmoke;
+  color: black;
 }
 .table-cell .name {
   text-transform: capitalize;

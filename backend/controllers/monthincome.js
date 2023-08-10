@@ -1,4 +1,6 @@
 const Income = require("../models/monthIncome");
+const save = require("../models/savings");
+const mongoose = require("mongoose");
 const monthIncome = async (req, res) => {
   const user = req.user;
   console.log(user.id);
@@ -25,12 +27,27 @@ const uIncome = async (req, res) => {
       { createdBy: user.id },
       { $set: { monthIncome: uIncome, savings: usave } }
     );
+    const now = new Date();
+    const beginningOfPreviousMonth = now.getMonth();
+    const yearr = now.getFullYear();
+    if (beginningOfPreviousMonth == 0) {
+      beginningOfPreviousMonth = 12;
+      yearr = yearr - 1;
+    }
+    const saving = new save({
+      savings: monthIncome,
+      month: beginningOfPreviousMonth,
+      year: yearr,
+    });
+    saving.createdBy = user.id;
+    await saving.save();
   } else {
     const income = new Income(req.body);
     income.createdBy = user.id;
     await income.save();
   }
   const r1 = await Income.findOne({ createdBy: user.id });
+  console.log(r1);
 
   res.status(200).json(r1);
 };

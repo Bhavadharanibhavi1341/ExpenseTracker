@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { PopupExpenseComponent } from '../popup-expense/popup-expense.component';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { WebserviceService } from '../services/webservice.service';
+import { MatSidenav } from '@angular/material/sidenav';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +15,8 @@ import { WebserviceService } from '../services/webservice.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('sidenav') sidenav!: MatSidenav;
+  isSidenavOpen: boolean = false;
   @Output() public childEvent = new EventEmitter();
   @Output() list: Array<any> = [];
   insert: any;
@@ -30,7 +34,13 @@ export class HomeComponent implements OnInit {
     private dialog: MatDialog,
     private modalService: NgbModal, // private modalService: NgbModal
     private webservice: WebserviceService
-  ) {}
+  ) {
+    if (this.Expenses != null) {
+      this.valBool = true;
+    } else {
+      this.valBool = false;
+    }
+  }
   ngOnInit(): void {
     this.webservice.getIncome().subscribe((res: any) => {
       console.log(res);
@@ -58,6 +68,15 @@ export class HomeComponent implements OnInit {
   sMonth?: number;
   sYear?: number;
   closeResult = '';
+  valBool?: boolean;
+  toggleSidenav() {
+    if (this.isSidenavOpen) {
+      this.sidenav.close();
+    } else {
+      this.sidenav.open();
+    }
+    this.isSidenavOpen = !this.isSidenavOpen;
+  }
   back() {
     this.webservice.getDailyExpenses().subscribe((res: any) => {
       this.commonExpenses = res;

@@ -15,6 +15,11 @@ const monthIncomeSchema = new mongoose.Schema({
     ref: "User",
     required: [true, "Please provide user"],
   },
+  createdAt: {
+    type: Date,
+    required: true,
+    default: new Date(),
+  },
 });
 
 module.exports = mongoose.model("monthIncome", monthIncomeSchema);

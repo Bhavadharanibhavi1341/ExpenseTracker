@@ -18,6 +18,11 @@ import { SplitPayComponent } from './split-pay/split-pay.component';
 import { SplitpopComponent } from './splitpop/splitpop.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SearchfilterPipe } from './searchfilter.pipe';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -41,6 +46,11 @@ import { SearchfilterPipe } from './searchfilter.pipe';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
