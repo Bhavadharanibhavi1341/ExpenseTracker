@@ -1,28 +1,56 @@
-<!-- <form #expenseform="ngForm" (ngSubmit)="add()">
-  <label>Add an Expense : </label>
-  <input [(ngModel)]="expense" type="text" name="expense" />
-  <button type="reset" (click)="expenses(expenseform.value)">ADD</button>
-  <button type="submit">Confirm</button>
-  <div class="content">
-    <div class="itemsList" *ngFor="let i of commonExpenses; let k = index">
-      <div class="item">{{ i }}</div>
-      <button
-        class="delete"
-        (click)="commonExpenses.splice(k, 1); deleteItem()"
-      >
-        Delete
-      </button>
-    </div>
-  </div>
-</form>
+<div class="all">
+  <h1 mat-dialog-title class="titleup">
+    {{ this.inputdata.title }} <button (click)="close1()">X</button>
+  </h1>
 
-<form #incomeform="ngForm" (ngSubmit)="call(incomeform)">
-  <input type="number" [(ngModel)]="Income" name="Income" />
-  <button type="submit">add income</button>
-</form> -->
-<mat-nav-list>
-  <a mat-list-item routerLink="/">Home</a>
-  <a mat-list-item routerLink="/about">About</a>
-  <a mat-list-item routerLink="/contact">Contact</a>
-  <!-- Add more links as needed -->
-</mat-nav-list>
+  <div mat-dialog-content class="overall">
+    <main>
+      <header>
+        <div
+          class="table"
+          *ngIf="commonExpenses.length != 0; else elseStatement"
+        >
+          <div
+            class="table-row"
+            *ngFor="let i of commonExpenses; let k = index"
+          >
+            <div class="table-cell">
+              <div class="info">{{ i.tripName }}</div>
+            </div>
+            <div class="table-cell">
+              <div class="info">paidUser: {{ i.details.paidUser }}</div>
+            </div>
+            <div class="table-cell">
+              <div class="info">Amount Paid: {{ i.details.paidAmount }}</div>
+            </div>
+
+            <div class="table-cell">
+              <div class="info">Your Share: {{ i.details.Share }}</div>
+            </div>
+
+            <div class="table-cell">
+              <button
+                (click)="
+                  change(i.tripid);
+                  approvePayment(i.tripid, i.details.Share, i.id)
+                "
+                [disabled]="i.details.Status === 'approved'"
+                Disable
+                the
+                button
+                if
+                already
+                approved
+              >
+                {{ i.details.Status === "approved" ? "Approved" : "Accept" }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <ng-template #elseStatement><h2>No requests</h2></ng-template>
+        </div>
+      </header>
+    </main>
+  </div>
+</div>

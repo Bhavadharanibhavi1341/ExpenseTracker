@@ -1,10 +1,11 @@
 main {
   display: grid;
   grid-template-areas:
-    "head head head"
-    "content side side";
-  grid-template-rows: 10vh 90vh;
-  grid-template-columns: 30% 40% 30%;
+    "head  head"
+    "content  side"
+    "footer  footer";
+  grid-template-rows: 0vh 82vh 8vh;
+  grid-template-columns: 30% 70%;
   overflow: auto;
 }
 header {
@@ -74,29 +75,60 @@ header .menu ul li button {
   /* transition: all 0.3s ease; */
 }
 header .menu ul li a:hover {
-  border: 2px solid white;
   color: azure;
 }
 header .menu ul li button:hover {
-  border: 2px solid white;
+  background-color: #888;
   color: azure;
 }
 article {
   grid-area: content;
-  background-color: #414040;
+  margin: 10px;
+  background-color: #2b2b2b;
   color: whitesmoke;
   overflow: auto;
+  border-radius: 10px;
+}
+article::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: calc(80% + 12%);
+  height: calc(90% + 8%);
+  z-index: -1;
+  background-color: #3b3b3b;
+  box-shadow: 0 2px 4px black;
 }
 aside {
   grid-area: side;
-  background-color: rgb(233, 217, 217);
+  background-color: whitesmoke;
+  margin: 10px 10px 10px 0px;
+  border-radius: 10px;
   overflow: auto;
+}
+aside::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: calc(99.27% + 20px);
+  height: calc(90% + 20px);
+  z-index: -1;
+  background-color: #3b3b3b;
+  box-shadow: 0 2px 4px black;
+}
+footer {
+  grid-area: footer;
+  background-color: #1b1b1b;
 }
 .flex-parent-element1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 2%;
+  padding-top: 5%;
   padding-left: 5%;
   padding-bottom: 5%;
   padding-right: 3%;
@@ -104,6 +136,14 @@ aside {
   font-weight: bolder;
   border-bottom: 1px solid rgb(121, 119, 119);
 }
+.flex-parent-element1:hover {
+  background-color: #3b3b3b;
+  cursor: pointer;
+}
+.flex-parent-element1.selected {
+  background-color: #4d4c4c;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -133,7 +173,7 @@ scrollbar-thumb:hover {
   display: table;
   width: 100%;
   border-collapse: collapse;
-  background-color: rgb(233, 217, 217);
+  background-color: whitesmoke;
 }
 
 .table-row {
@@ -145,11 +185,12 @@ scrollbar-thumb:hover {
 .whole .button1 {
   margin-right: 15px;
 
-  position: fixed;
+  position: relative;
 }
 .whole .button1 button {
-  bottom: 40px;
-  left: 24%;
+  margin-bottom: 0;
+  bottom: 90px;
+  left: 25%;
   position: fixed;
   font-size: 2.5pc;
   font-weight: lighter;
@@ -160,6 +201,11 @@ scrollbar-thumb:hover {
   border-radius: 25px;
   background-color: black;
 }
+.custom-sidenav.open ~ .whole .button1 button {
+  bottom: -450px;
+  left: 40%; /* Adjust this value based on your desired positioning */
+}
+
 .whole .button1 button:hover {
   background-color: #888;
 }
@@ -192,32 +238,30 @@ article h2 {
   margin-right: 10px;
   font-weight: bold;
   font-size: larger;
-  background-color: rgb(233, 217, 217);
+  background-color: whitesmoke;
 }
 
 .info {
   display: inline-block;
   margin-right: 10px;
-  background-color: rgb(233, 217, 217);
-  font-weight: lighter;
-  font-size: medium;
+  background-color: whitesmoke;
 }
 .table-cell button {
-  background-color: transparent;
   border: none;
   font-size: large;
   position: fixed;
   right: 30px;
-  bottom: 40px;
-  background-color: black;
+  bottom: 90px;
+  background-color: #1b1b1b;
   color: whitesmoke;
   border-radius: 25px;
   padding: 15px;
 }
 .table-cell button:hover {
-  background-color: whitesmoke;
-  color: black;
+  background-color: #888;
+  color: whitesmoke;
 }
+
 .table-cell .name {
   text-transform: capitalize;
 }
@@ -274,4 +318,329 @@ article h2 {
 }
 .modal-body form .button button {
   border: none;
+}
+.button2 button {
+  border: none;
+  font-size: large;
+  position: fixed;
+  right: 180px;
+  bottom: 90px;
+  background-color: #1b1b1b;
+  color: whitesmoke;
+  border-radius: 25px;
+  padding: 15px;
+}
+
+.button2 button:hover {
+  background-color: #888;
+}
+.modal1 {
+  position: fixed;
+  z-index: 1050;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  outline: 0;
+}
+
+/* Style for the modal content */
+.modal-content1 {
+  position: relative;
+  background-color: whitesmoke;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  margin: 5% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
+}
+
+/* Style for the modal header */
+.modal-header1 {
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+/* Style for the modal title */
+.modal-title1 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+/* Style for the close button */
+.close {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.5;
+  transition: opacity 0.15s;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+/* Style for the modal body */
+.modal-body1 {
+  padding: 1rem;
+}
+footer {
+  display: grid;
+  grid-template-areas: "head content foot";
+  grid-template-columns: 30% 40% 30%;
+}
+footer header {
+  grid-area: head;
+  background-color: #1b1b1b;
+  color: whitesmoke;
+  border: 2px solid rgb(121, 119, 119);
+}
+footer article {
+  grid-area: content;
+  background-color: #1b1b1b;
+  color: whitesmoke;
+}
+footer footer {
+  grid-area: foot;
+  background-color: #1b1b1b;
+  color: whitesmoke;
+  border: 2px solid rgb(121, 119, 119);
+}
+/* Styling for the header section */
+footer header {
+  background-color: #1b1b1b;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Styling for the container */
+footer header .container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 15%;
+}
+
+/* Styling for the item */
+footer header .item {
+  font-size: 18px;
+  color: whitesmoke;
+  margin-bottom: 5px;
+}
+
+/* Media query for shrinking font size */
+@media (max-width: 768px) {
+  footer header .item {
+    font-size: 16px;
+  }
+}
+footer footer {
+  background-color: #1b1b1b;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+footer footer .container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 10%;
+}
+footer footer .item {
+  font-size: 18px;
+  color: whitesmoke;
+  margin-bottom: 5px;
+}
+@media (max-width: 768px) {
+  footer footer .item {
+    font-size: 16px;
+  }
+}
+
+.custom-sidenav {
+  width: 250px; /* Adjust the width as needed */
+  background-color: #222;
+  color: #fff;
+}
+
+.custom-sidenav .list {
+  padding: 20px; /* Add padding to the list items */
+}
+
+.custom-sidenav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.custom-sidenav li {
+  margin-bottom: 15px; /* Add spacing between list items */
+}
+
+.custom-sidenav button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: transparent;
+  border-radius: 25px;
+}
+
+.custom-sidenav button:hover {
+  background-color: #555;
+}
+
+nav {
+  position: relative;
+  background: #1b1b1b;
+  width: 100%;
+  height: 10vh;
+  padding: 10px 0;
+  z-index: 12;
+}
+nav .menu {
+  max-width: 1500px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.sidebutton {
+  margin-right: 15px;
+  padding-top: 0%;
+  padding-bottom: 15px;
+}
+
+.sidebutton button {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  color: #fff;
+  padding-top: 8px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 25px;
+}
+.sidebutton button:hover {
+  background-color: #555;
+}
+nav .menu .logo a {
+  text-decoration: none;
+}
+
+nav .menu .logo a h3 {
+  text-decoration: none;
+  padding-left: 0%;
+  margin-left: 0%;
+  color: white;
+  font-size: 35px;
+  font-family: cursive;
+}
+.menu ul {
+  display: inline-flex;
+}
+.menu ul li {
+  list-style: none;
+  margin-left: 7px;
+  margin-top: 3px;
+}
+.menu ul li:first-child {
+  margin-left: 0px;
+}
+.menu ul li a {
+  margin-top: 40px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 3px 15px;
+  border-radius: 5px;
+  /* transition: all 0.3s ease; */
+  align-items: center;
+  justify-content: center;
+}
+.menu ul li button {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: #1b1b1b;
+  border: none;
+  /* transition: all 0.3s ease; */
+}
+
+.menu ul li button:hover {
+  background-color: #555;
+}
+
+.red-point {
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.green-point {
+  width: 15px;
+  height: 15px;
+  background-color: green;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.blue-point {
+  width: 15px;
+  height: 15px;
+  background-color: rgb(17, 17, 179);
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  color: black;
+  background-color: #2b2b2b;
+  padding: 10px;
+  z-index: 1;
+  top: 90%;
+  left: 50%; /* Position to the right of the button */
+  min-width: 80px; /* Adjust the width as needed */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }

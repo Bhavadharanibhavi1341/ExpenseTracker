@@ -11,6 +11,13 @@ const monthIncome = async (req, res) => {
   console.log("success");
   res.status(200).json({ msg: "success" });
 };
+const getSavings = async (req, res) => {
+  const user = req.user;
+
+  const r = await save.find({ createdBy: user.id });
+
+  res.status(200).json(r);
+};
 
 const uIncome = async (req, res) => {
   const user = req.user;
@@ -61,4 +68,4 @@ const getIncome = async (req, res) => {
   }
 };
 
-module.exports = { monthIncome, uIncome, getIncome };
+module.exports = { monthIncome, uIncome, getIncome, getSavings };

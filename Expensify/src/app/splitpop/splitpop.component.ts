@@ -27,6 +27,11 @@ export class SplitpopComponent implements OnInit {
       for (let i = 0; i < this.list.length; i++) {
         this.userList.unshift({ UserName: this.list[i].userName });
       }
+      this.userList.sort((a, b) => a.UserName.localeCompare(b.UserName));
+      this.userList = this.userList.filter(
+        (user) => user.UserName !== this.name
+      );
+      console.log(this.userList, 'sortinggg');
     });
   }
   constructor(
@@ -37,6 +42,7 @@ export class SplitpopComponent implements OnInit {
     private ref: MatDialogRef<SplitpopComponent>,
     private webservice: WebserviceService
   ) {}
+
   Add(expenseform: NgForm) {
     console.log('split payyyyy');
     console.log(this.userList);

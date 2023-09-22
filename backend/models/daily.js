@@ -1,12 +1,15 @@
 const mongoose = require("mongoose");
 
 const dailyExpenseSchema = new mongoose.Schema({
-  name: String,
-  amount: Number,
+  name: { type: String, required: true },
+  amount: {
+    type: Number,
+    required: true,
+  },
   createdAt: {
     type: Date,
     required: true,
-    default: new Date(),
+    // default: new Date(),
   },
   createdBy: {
     type: mongoose.Types.ObjectId,

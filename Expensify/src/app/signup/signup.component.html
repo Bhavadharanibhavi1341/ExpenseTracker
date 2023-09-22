@@ -13,16 +13,6 @@
           <span class="text-1">Money</span>
         </div>
       </div>
-      <div class="back">
-        <!--<img class="backImg" src="images/backImg.jpg" alt="">-->
-        <div class="text">
-          <span class="text-1"
-            >Complete miles of journey <br />
-            with one step</span
-          >
-          <span class="text-2">Let's get started</span>
-        </div>
-      </div>
     </div>
     <div class="forms">
       <div class="form-content">
@@ -31,7 +21,6 @@
           <form #signupform="ngForm" (ngSubmit)="crate(signupform)">
             <div class="input-boxes">
               <div class="input-box">
-                <i class="fas fa-envelope"></i>
                 <input
                   [(ngModel)]="userName"
                   id="user-name"
@@ -39,11 +28,15 @@
                   autocomplete="on"
                   name="userName"
                   required
-                  placeholder="Enter your Name"
+                  placeholder="Enter Name"
+                  (input)="checkUsernameAvailability()"
                 />
+                <br />
+              </div>
+              <div class="validation-message" *ngIf="usernameTaken">
+                Username already exists.
               </div>
               <div class="input-box">
-                <i class="fas fa-lock"></i>
                 <input
                   [(ngModel)]="email"
                   id="user-email"
@@ -52,20 +45,39 @@
                   autocomplete="on"
                   name="email"
                   required
-                  placeholder="Enter your Email_id"
+                  placeholder="Enter Email"
+                  (input)="checkUseremailAvailability()"
                 />
               </div>
+              <div class="validation-message" *ngIf="useremailTaken">
+                mailid already exists.
+              </div>
+
               <div class="input-box">
                 <i class="fas fa-lock"></i>
                 <input
                   [(ngModel)]="password"
                   id="user-password"
                   class="form-content"
-                  type="password"
+                  type="{{ showPassword ? 'text' : 'password' }}"
                   name="password"
                   required
-                  placeholder="Enter password"
+                  placeholder="Create password"
+                  (input)="lengthCheck()"
                 />
+                <button
+                  mat-icon-button
+                  type="button"
+                  class="toggle-password-button"
+                  (click)="togglePasswordVisibility()"
+                >
+                  <mat-icon>{{
+                    showPassword ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+              </div>
+              <div class="validation-message" *ngIf="isLength">
+                Password must contain minimum 8 characters
               </div>
               <div class="input-box">
                 <i class="fas fa-lock"></i>
@@ -73,15 +85,29 @@
                   [(ngModel)]="cpassword"
                   id="user-confirm-password"
                   class="form-content"
-                  type="password"
-                  name="password"
+                  type="{{ showPassword1 ? 'text' : 'password' }}"
+                  name="cpassword"
                   required
-                  placeholder="Re-Enter password"
+                  placeholder="Confirm password"
+                  (input)="passwordMatch()"
                 />
+                <button
+                  mat-icon-button
+                  type="button"
+                  class="toggle-password-button"
+                  (click)="togglePasswordVisibility1()"
+                >
+                  <mat-icon>{{
+                    showPassword1 ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+              </div>
+              <div class="validation-message" *ngIf="isMatch">
+                passwordand confirm password doesn't match
               </div>
               <!-- <div class="text"><a href="#">Forgot password?</a></div> -->
               <div class="button input-box">
-                <input type="submit" value="Sumbit" />
+                <input type="submit" value="Register" />
               </div>
               <div class="text sign-up-text">
                 Already have an account?<a routerLink="/login" id="signup">
@@ -95,3 +121,24 @@
     </div>
   </div>
 </div>
+
+<ng-template #errorModal3 let-modal>
+  <div class="modal1">
+    <div class="modal-content1">
+      <div class="modal-header1">
+        <h4 class="modal-title1">Error</h4>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="modal.dismiss()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body1">
+        {{ message }}
+      </div>
+    </div>
+  </div>
+</ng-template>

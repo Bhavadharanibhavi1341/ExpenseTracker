@@ -5,11 +5,18 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SearchfilterPipe implements PipeTransform {
   transform(userList: any[], searchValue: string): any[] {
-    if (!userList || !searchValue) {
-      return userList;
+    if (!userList) {
+      return [];
     }
-    return userList.filter((user) =>
-      user.UserName.toLowerCase().includes(searchValue)
-    );
+
+    let filteredList = userList;
+
+    if (searchValue) {
+      filteredList = filteredList.filter((user) =>
+        user.UserName.toLowerCase().includes(searchValue.toLowerCase())
+      );
+    }
+
+    return filteredList.sort((a, b) => a.UserName.localeCompare(b.UserName));
   }
 }

@@ -57,7 +57,6 @@
         <button type="button" (click)="modal.dismiss('Cross click')">
           cancel
         </button>
-        <!-- <button (click)="closeModal(Expense)" type="button">Close</button> -->
       </div>
     </form>
   </div>
@@ -73,11 +72,7 @@
       </div>
       <a><h3>Expensify</h3></a>
     </div>
-    <ul>
-      <li><button routerLink="/login">LogOut</button></li>
-      <li></li>
-      <li></li>
-    </ul>
+    <ul></ul>
   </div>
 </nav>
 <mat-sidenav-container class="main-container">
@@ -86,50 +81,92 @@
     mode="side"
     class="custom-sidenav"
     [class.open]="isSidenavOpen"
+    opened="true"
   >
     <mat-nav-list class="list">
       <ul>
-        <li><button routerLink="/splitpay">Split Pay</button></li>
-        <li>
-          <button (click)="openModal(Expense)">Show Expense</button>
+        <li class="dropdown" [ngClass]="{ active: isDropdownActive }">
+          <div>
+            <button routerLink="/home">Dashboard</button>
+
+            <ul class="dropdown-content dropdown-menu">
+              <li>
+                <button class="dropdown-item" (click)="openModal(Expense)">
+                  Show Expense
+                </button>
+              </li>
+            </ul>
+          </div>
         </li>
         <li><button (click)="openModal(template)">Add Income</button></li>
+        <li><button routerLink="/dashboard">Savings</button></li>
+        <li [ngClass]="{ active: isDropdownActive }">
+          <div>
+            <button class="btn btn-primary" routerLink="/splitpay">
+              Split Pay
+            </button>
+          </div>
+        </li>
+
+        <li><button routerLink="/login" (click)="logout()">LogOut</button></li>
       </ul>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <main class="main-content">
-      <header></header>
-      <article>
-        <h3>
-          Welcome <br /><br />
-          {{ this.name }}
-        </h3>
+      <article class="content-with-margin">
+        <h2>Hello {{ name }},</h2>
+        <h4>Take a look at your Expenses...</h4>
+        <br /><br />
+        <canvas id="canvas">{{ chart }}</canvas>
       </article>
       <aside>
         <header>
-          <div class="parent">
-            <div class="title">
-              <div class="button">
-                <button (click)="back()">&#x25c0;</button>
-              </div>
-
-              <h3>Recent Expenses</h3>
+          <div *ngIf="searchbar; else elseStatement1" class="header-title">
+            <div class="button">
+              <button (click)="back()">&#x25c0;</button>
             </div>
-
-            <div class="button1">
+            <h3>Recent Expenses</h3>
+            <div class="add-button">
               <button (click)="openpopup()">+</button>
             </div>
           </div>
+
+          <ng-template #elseStatement1>
+            <div class="full-size">
+              <div class="button">
+                <button (click)="back()">&#x25c0;</button>
+              </div>
+              <input
+                type="text"
+                placeholder="Search here"
+                class="custom-input"
+              />
+            </div>
+          </ng-template>
         </header>
+
         <article>
           <div *ngIf="Expenses.length > 0; else elseStatement">
             <div class="itemsList" *ngFor="let i of Expenses; let k = index">
               <div class="flex-parent-element">
                 <div class="item">
                   <div class="name">{{ i.name }}</div>
+
+                  <div class="date">
+                    {{ i.Date | date : "MMMM d, y" }} at {{ i.time }}
+                  </div>
                 </div>
-                <div class="item amt">{{ i.amount }}</div>
+                <div class="amt">
+                  <div class="inamt">-{{ i.amount }} &nbsp;</div>
+
+                  <button
+                    (click)="delete(i.id, i.amount)"
+                    style="color: whitesmoke"
+                  >
+                    <i class="material-icons">delete</i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -145,11 +182,16 @@
             <div class="item">{{ this.savings }}</div>
           </div>
         </header>
-        <article></article>
-        <footer>
+        <article>
           <div class="container">
             <div class="item">Current Balance :</div>
             <div class="item">{{ this.income }}</div>
+          </div>
+        </article>
+        <footer>
+          <div class="container">
+            <div class="item">Total Spendings :</div>
+            <div class="item">{{ this.totalExpense1 }}</div>
           </div>
         </footer>
       </footer>

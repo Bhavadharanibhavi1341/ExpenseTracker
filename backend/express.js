@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const nodemailer = require("nodemailer");
 const app = express();
 const authenRouter = require("./routes/auth");
 const cexpenserouter = require("./routes/commonexpenses");

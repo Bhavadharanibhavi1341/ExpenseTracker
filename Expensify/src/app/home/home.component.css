@@ -5,7 +5,6 @@
   height: fit-content;
   width: 500px;
   padding-bottom: 50px;
-  font-family: Georgia, serif;
 }
 
 .modal-body form {
@@ -13,7 +12,6 @@
   padding-bottom: 5px;
   padding-left: 100px;
   align-items: center;
-  font-family: Georgia, serif;
 }
 .modal-body form button {
   color: #1b1b1b;
@@ -26,21 +24,18 @@
   width: fit-content;
   border: none;
   display: inline;
-  font-family: Georgia, serif;
 }
 .modal-body .button {
   display: inline;
   width: max-content;
   padding-left: 0px;
   padding-right: 40px;
-  font-family: Georgia, serif;
 }
 
 .modal-body .button button {
   padding: 10px 15px;
 }
 .modal-body form .title {
-  font-weight: lighter;
   color: aliceblue;
   padding-left: 25px;
   font-size: 10px;
@@ -56,37 +51,7 @@
 .modal-body form .button button {
   border: none;
 }
-/* .img {
-  background-color: #000;
-  width: 100%;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-.img::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.4);
-}
-.center {
-  position: absolute;
-  top: 52%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  padding: 0 20px;
-  text-align: center;
-}
-.center .title {
-  color: #fff;
-  font-size: 55px;
-  font-weight: 600;
-} */
 main {
-  font-family: Georgia, serif;
   display: grid;
   grid-template-areas:
     "content content side"
@@ -95,35 +60,30 @@ main {
   grid-template-columns: 30% 40% 30%;
 }
 .custom-sidenav {
-  font-family: Georgia, serif;
-  background-color: #888;
+  background-color: whitesmoke;
 }
 
 .custom-sidenav {
   width: 250px; /* Adjust the width as needed */
-  background-color: #333;
+  background-color: #222;
   color: #fff;
 }
 
 .custom-sidenav .list {
-  font-family: Georgia, serif;
   padding: 20px; /* Add padding to the list items */
 }
 
 .custom-sidenav ul {
-  font-family: Georgia, serif;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .custom-sidenav li {
-  font-family: Georgia, serif;
   margin-bottom: 15px; /* Add spacing between list items */
 }
 
 .custom-sidenav button {
-  font-family: Georgia, serif;
   display: block;
   width: 100%;
   padding: 10px;
@@ -142,7 +102,6 @@ main {
 }
 
 nav {
-  font-family: Georgia, serif;
   position: relative;
   background: #1b1b1b;
   width: 100%;
@@ -151,7 +110,6 @@ nav {
   z-index: 12;
 }
 nav .menu {
-  font-family: Georgia, serif;
   max-width: 1500px;
   margin: auto;
   display: flex;
@@ -164,12 +122,12 @@ nav .menu {
 }
 
 .sidebutton {
-  margin-right: 15px; /* Adjust this value as needed */
+  margin-right: 15px;
   padding-top: 0%;
   padding-bottom: 15px;
 }
+
 .sidebutton button {
-  font-family: Georgia, serif;
   background-color: transparent;
   background-repeat: no-repeat;
   border: none;
@@ -199,7 +157,6 @@ nav .menu .logo a h3 {
   font-family: cursive;
 }
 .menu ul {
-  font-family: Georgia, serif;
   display: inline-flex;
 }
 .menu ul li {
@@ -211,7 +168,6 @@ nav .menu .logo a h3 {
   margin-left: 0px;
 }
 .menu ul li a {
-  font-family: Georgia, serif;
   margin-top: 40px;
   text-decoration: none;
   color: #fff;
@@ -235,35 +191,71 @@ nav .menu .logo a h3 {
   /* transition: all 0.3s ease; */
 }
 
+/* .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #888;
+  padding: 10px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+} */
+
+.dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  color: black;
+  background-color: #2b2b2b;
+  padding: 10px;
+  z-index: 1;
+  top: 100%;
+  left: 40%; /* Position to the right of the button */
+  min-width: 80px; /* Adjust the width as needed */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 .menu ul li button:hover {
-  border: 2px solid white;
-  color: azure;
+  background-color: #555;
 }
 article {
   grid-area: content;
-  background-color: black;
-  overflow: hidden;
-  font-family: Georgia, serif;
+  background-color: whitesmoke;
+  overflow: auto;
 }
-article h3 {
-  color: azure;
-  text-align: center;
-  font-family: Georgia, serif;
-  font-size: 55px;
-  font-weight: 600;
-  justify-content: center;
+.content-with-margin {
+  margin: 10px;
+  border-radius: 10px;
+}
+.content-with-margin::before {
+  content: "";
+  display: block;
   position: absolute;
-  top: 40%;
-  left: 32%;
-  transform: translate(-50%, -50%);
-  padding: 0 20px;
+  top: -10px;
+  left: -10px;
+  width: calc(80% + 20px);
+  height: calc(90% + 20px);
+  z-index: -1;
+  background-color: #1b1b1b;
+  box-shadow: 0 2px 4px black;
+}
+article .container {
+  margin-top: 3%;
 }
 aside {
   grid-area: side;
   background-color: rgb(83, 82, 81);
 }
 aside {
-  font-family: Georgia, serif;
   display: grid;
   grid-template-areas:
     "head "
@@ -273,75 +265,143 @@ aside {
 
 aside header {
   grid-area: head;
-  background-color: rgb(83, 82, 81);
+  background-color: #222;
   border-bottom: 1px solid black;
 }
 aside article {
   grid-area: content;
-  background-color: rgb(83, 82, 81);
+  background-color: #222;
   padding-top: 3%;
   overflow: auto;
 }
 
-.parent {
-  font-family: Georgia, serif;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* Styling for the header section */
+aside header {
+  background-color: #222;
+  border-bottom: 1px solid rgb(121, 119, 119);
 }
 
-.title {
-  font-family: Georgia, serif;
+/* Styling for the title */
+.header-title {
   display: flex;
   align-items: center;
-}
-.title .button {
-  font-family: Georgia, serif;
-  margin-right: 20px;
-}
-.parent .title h3 {
-  font-family: Georgia, serif;
-  font-family: monospace;
-  color: #fff;
-  padding-top: 15px;
-  font-weight: bolder;
-  font-size: x-large;
+  font-size: 26px;
+  font-weight: bold;
+  color: white;
 }
 
-.parent .title .button button {
-  font-family: Georgia, serif;
-  font-weight: bolder;
-  font-size: large;
-  color: #fff;
+.full-size {
+  display: flex;
+  align-items: center;
+  font-size: 26px;
+  font-weight: bold;
+  color: white;
+  width: 100%; /* Occupy full width */
+  display: flex; /* Use flex display to align items */
+}
+
+.header-title h3 {
+  padding-top: 3%;
+}
+.full-size .button {
+  padding-left: 2%;
+  padding-right: 2%;
+}
+.full-size .button button {
+  font-size: 16px;
   background: none;
   border: none;
+  color: white;
+  cursor: pointer;
   padding: 15px;
   border-radius: 25px;
   padding-right: 20px;
+  transition: background-color 0.3s ease;
 }
-.parent .title .button button:hover {
-  background-color: #888;
+
+.custom-input {
+  border: none;
+  padding: 10px;
+  height: 58px;
+  border-radius: 5px;
+  background-color: #222; /* Change to the desired background color */
+  color: whitesmoke; /* Change to the desired text color */
+  font-size: 16px;
+  width: 85%; /* Adjust the width as needed */
 }
-.parent .button1 {
-  font-family: Georgia, serif;
-  margin-right: 15px;
+.custom-input input:focus,
+.custom-input input:valid {
+  border-color: #473172;
 }
-.parent .button1 button {
-  font-family: Georgia, serif;
-  font-size: 2pc;
-  font-weight: lighter;
+/* Styling for the back button */
+.header-title .button {
+  padding-left: 2%;
+  padding-right: 2%;
+}
+.header-title .button button {
+  font-size: 16px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 25px;
+  padding-right: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.header-title .button button:hover {
+  background-color: #555;
+}
+
+/* Styling for the "Recent Expenses" heading */
+.header-title h3 {
+  margin-left: 3%;
+}
+
+/* Styling for the "Add" button */
+.add-button {
+  margin-left: auto;
+  margin-right: 3%;
+}
+
+.add-button button {
   padding: 15px;
   background-color: transparent;
   border: none;
   color: #fff;
   border-radius: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-.parent .button1 button:hover {
-  background-color: #888;
+
+.add-button button:hover {
+  background-color: #555;
+}
+
+/* Media query for shrinking text size */
+@media (max-width: 768px) {
+  .header-title {
+    font-size: 18px;
+  }
+
+  .header-title .button button {
+    font-size: 14px;
+  }
+
+  .header-title h3 {
+    font-size: 18px;
+  }
+
+  .add-button button {
+    font-size: 16px;
+  }
 }
 
 .flex-parent-element {
-  font-family: Georgia, serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -350,9 +410,9 @@ aside article {
   padding-bottom: 5%;
   padding-right: 3%;
   font-size: medium;
-  font-weight: bolder;
   color: azure;
-  border-bottom: 1px solid rgb(121, 119, 119);
+  border-bottom: 2px solid #3b3b3b;
+  flex-direction: row;
 }
 ::-webkit-scrollbar {
   width: 10px;
@@ -375,17 +435,45 @@ scrollbar-thumb:hover {
 }
 
 .item {
-  font-family: Georgia, serif;
   display: flex;
-  align-items: center;
+  align-items: left;
+  flex-direction: column;
+}
+.item .name {
+  margin-top: 0%;
+  margin-bottom: 0%;
+  padding-bottom: 5%;
 }
 
 .amt {
-  font-family: Georgia, serif;
   margin-left: auto;
+  display: flex;
+  color: red;
+}
+.amt .inamt {
+  padding-top: 8%;
+}
+.amt button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 25px;
+  cursor: pointer;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+.amt button:hover {
+  background-color: #888;
 }
 article h2 {
-  margin-left: 70px;
+  margin-left: 10px;
+  justify-content: center;
+  color: #1b1b1b;
+  margin-bottom: 0%;
+}
+article h4 {
+  margin-left: 10px;
   justify-content: center;
   color: #888;
   font-family: cursive;
@@ -418,41 +506,82 @@ footer footer {
   color: whitesmoke;
   border: 2px solid rgb(121, 119, 119);
 }
-footer footer .container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  max-width: 100%;
-  gap: 80px;
-  margin: 0 auto;
-  padding-left: 50%;
-}
-footer footer .item {
+/* Styling for the header section */
+footer header {
+  background-color: #1b1b1b;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 10px;
-  width: 210%;
-  font-weight: bolder;
-  font-size: large;
 }
-footer footer .item1 {
+footer article {
+  background-color: #1b1b1b;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 10px;
-  width: 210%;
-  font-weight: bolder;
-  font-size: large;
-  padding-top: 28%;
+}
+footer article .container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 15%;
+}
+footer article .item {
+  font-size: 18px;
+  color: whitesmoke;
+  margin-bottom: 22px;
+}
+@media (max-width: 768px) {
+  footer article .item {
+    font-size: 16px;
+  }
 }
 
 footer header .container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  max-width: 100%;
-  gap: 2%;
-  margin: 0 auto;
-  padding-top: 4%;
-  padding-left: 20%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 15%;
 }
+
+/* Styling for the item */
 footer header .item {
+  font-size: 18px;
+  color: whitesmoke;
+  margin-bottom: 5px;
+}
+
+/* Media query for shrinking font size */
+@media (max-width: 768px) {
+  footer header .item {
+    font-size: 16px;
+  }
+}
+footer footer {
+  background-color: #1b1b1b;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 10px;
-  width: max-content;
-  font-weight: bolder;
-  font-size: large;
-  padding-top: 3%;
+}
+
+footer footer .container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 15%;
+}
+footer footer .item {
+  font-size: 18px;
+  color: whitesmoke;
+  margin-bottom: 5px;
+}
+@media (max-width: 768px) {
+  footer footer .item {
+    font-size: 16px;
+  }
 }

@@ -1,14 +1,14 @@
-<ng-template #template let-modal>
+<ng-template #template1 let-modal>
   <div class="modal-body">
-    <form (ngSubmit)="temsubmit(addTemForm)" #addTemForm="ngForm">
-      <div class="title"><h3>Enter the Amount</h3></div>
+    <form (ngSubmit)="temsubmit1(addTemForm)" #addTemForm="ngForm">
+      <div class="title"><h3>Update your Income</h3></div>
 
       <input
         type="number"
         class="form-control"
-        [(ngModel)]="amt"
+        [(ngModel)]="uIncome1"
         name="uIncome1"
-        placeholder="Here.."
+        placeholder="Enter Current Income"
       />
 
       <!--
@@ -27,62 +27,226 @@
   </div>
 </ng-template>
 
-<main>
-  <header>
-    <nav>
-      <div class="menu">
-        <div class="logo">
-          <a href=""><h3>Expensify</h3></a>
-        </div>
-        <ul>
-          <li><button routerLink="/home">home</button></li>
-          <li><button routerLink="/login">Logout</button></li>
-        </ul>
+<ng-template #template let-modal>
+  <div class="modal-body">
+    <form (ngSubmit)="temsubmit(addTemForm)" #addTemForm="ngForm">
+      <div class="title"><h3>Enter the Amount</h3></div>
+
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="amt"
+        name="uIncome1"
+        placeholder="Here.."
+      />
+
+      <!--
+--><br />
+      <div class="button">
+        <button type="submit" (click)="modal.dismiss('Cross click')">
+          pay
+        </button>
       </div>
-    </nav>
-  </header>
-  <article>
-    <div class="whole">
-      <div class="itemsList1" *ngIf="groupName.length > 0; else statementElse">
-        <div
-          class="flex-parent-element1"
-          *ngFor="let i of groupName; let k = index"
-        >
-          <div class="item1" (click)="show(i)">
-            <div class="name1">{{ i }}</div>
+      <div class="button">
+        <button type="button" (click)="modal.dismiss('Cross click')">
+          cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<ng-template #repay1 let-modal>
+  <div class="modal-body">
+    <form (ngSubmit)="repay(repayform)" #repayform="ngForm">
+      <div class="title"><h3>Enter the Amount</h3></div>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="repayAmt"
+        name="uIncome1"
+        placeholder="Here.."
+      />
+
+      <!--
+--><br />
+      <div class="button">
+        <button type="submit" (click)="modal.dismiss('Cross click')">
+          pay
+        </button>
+      </div>
+      <div class="button">
+        <button type="button" (click)="modal.dismiss('Cross click')">
+          cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<nav>
+  <div class="menu">
+    <div class="logo">
+      <div class="sidebutton">
+        <button (click)="toggleSidenav()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <a><h3>Expensify</h3></a>
+    </div>
+    <ul></ul>
+  </div>
+</nav>
+<mat-sidenav-container class="main-container">
+  <mat-sidenav
+    #sidenav
+    mode="side"
+    class="custom-sidenav"
+    [class.open]="isSidenavOpen"
+    opened="true"
+  >
+    <mat-nav-list class="list">
+      <ul>
+        <li class="dropdown" [ngClass]="{ active: isDropdownActive }">
+          <div>
+            <button class="btn btn-primary" routerLink="/home">
+              Dashboard
+            </button>
+            <!-- <button
+              routerLink="/home"
+              type="button"
+              class="dropdown-button btn btn-primary dropdown-toggle dropdown-toggle-split"
+              mdbDropdownToggle
+              aria-expanded="false"
+              (click)="toggleDropdown()"
+            >
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button> -->
+          </div>
+        </li>
+
+        <li><button (click)="openModal(template1)">Add Income</button></li>
+        <li><button routerLink="/dashboard">Savings</button></li>
+
+        <li class="dropdown" [ngClass]="{ active: isDropdownActive }">
+          <div>
+            <button routerLink="/splitpay">Split Pay</button>
+            <!-- <button
+              type="button"
+              class="dropdown-button btn btn-primary dropdown-toggle dropdown-toggle-split"
+              mdbDropdownToggle
+              aria-expanded="false"
+              (click)="toggleDropdown()"
+            >
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button> -->
+            <ul class="dropdown-content dropdown-menu">
+              <li>
+                <button (click)="requests()">Requests</button>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li><button routerLink="/login" (click)="logout()">LogOut</button></li>
+      </ul>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main class="main-content">
+      <article>
+        <div class="whole">
+          <div
+            class="itemsList1"
+            *ngIf="groupName.length > 0; else statementElse"
+          >
+            <div
+              class="flex-parent-element1"
+              *ngFor="let i of groupName; let k = index"
+              (click)="show(i); selectItem(k)"
+              [class.selected]="k === selectedItemIndex"
+            >
+              <div class="item1" (click)="show(i)">
+                <div class="red-point" *ngIf="hasUserToPay(i)"></div>
+                <div class="green-point" *ngIf="hasUserToGet(i)"></div>
+                <div class="blue-point" *ngIf="hasUserToNot(i)"></div>
+
+                <div class="name1">{{ i }}</div>
+              </div>
+            </div>
+          </div>
+          <ng-template #statementElse><h2>Create Your Groups</h2> </ng-template>
+          <div class="button1">
+            <button (click)="addGroup()">+</button>
           </div>
         </div>
+      </article>
+      <aside>
+        <div class="table" *ngIf="details.length != 0; else elseStatement">
+          <div class="table-row" *ngFor="let i of details; let k = index">
+            <div class="table-cell">
+              <div class="name">{{ i.UserName }}</div>
+            </div>
+            <div class="table-cell">
+              <div class="info">Paid: {{ i.paid }}</div>
+            </div>
+            <div class="table-cell">
+              <div class="info">ToPay: {{ i.toPay }}</div>
+            </div>
+            <div class="table-cell">
+              <div class="info">ToGet: {{ i.toGet }}</div>
+            </div>
+
+            <div class="table-cell" *ngIf="i.UserName === this.name">
+              <button (click)="openModal(template); change(i.UserName)">
+                Add Payment
+              </button>
+            </div>
+            <div class="button2" *ngIf="i.UserName === this.name">
+              <button (click)="openModal(repay1)">Add repayment</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <ng-template #elseStatement
+            ><h2>Click on any item to see details</h2></ng-template
+          >
+        </div>
+      </aside>
+      <footer class="footer">
+        <header>
+          <div class="container">
+            <div class="item">Total Amount to Pay :</div>
+            <div class="item">{{ this.userToPay }}</div>
+          </div>
+        </header>
+        <article></article>
+        <footer>
+          <div class="container">
+            <div class="item">Total Amount to Get :</div>
+            <div class="item">{{ this.userToGet }}</div>
+          </div>
+        </footer>
+      </footer>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<ng-template #errorModal3 let-modal>
+  <div class="modal1">
+    <div class="modal-content1">
+      <div class="modal-header1">
+        <h4 class="modal-title1">Error</h4>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="modal.dismiss()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <ng-template #statementElse><h2>Create Your Groups</h2> </ng-template>
-      <div class="button1">
-        <button (click)="addGroup()">+</button>
+      <div class="modal-body1">
+        {{ message }}
       </div>
     </div>
-  </article>
-  <aside>
-    <div class="table" *ngIf="details.length != 0; else elseStatement">
-      <div class="table-row" *ngFor="let i of details; let k = index">
-        <div class="table-cell">
-          <div class="name">{{ i.UserName }}</div>
-        </div>
-        <div class="table-cell">
-          <div class="info">Paid: {{ i.paid }}</div>
-        </div>
-        <div class="table-cell">
-          <div class="info">ToPay: {{ i.toPay }}</div>
-        </div>
-        <div class="table-cell">
-          <div class="info">ToGet: {{ i.toGet }}</div>
-        </div>
-        <div class="table-cell" *ngIf="i.UserName === this.name">
-          <button (click)="openModal(template); change(i.UserName)">Pay</button>
-        </div>
-      </div>
-    </div>
-    <div>
-      <ng-template #elseStatement
-        ><h2>Click on any item to see details</h2></ng-template
-      >
-    </div>
-  </aside>
-</main>
+  </div>
+</ng-template>

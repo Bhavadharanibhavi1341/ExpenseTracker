@@ -8,5 +8,5 @@ const { deleteExpense } = require("../controllers/commonexpense");
 router.route("/commonExpense").post(auth, commonExpense).get(auth, getExpenses);
 router.route("/dexpense").post(auth, dExpense).get(auth, showExpenses);
 router.route("/sexpense").post(auth, sExpense);
-router.route("/deleteExpense").post(auth, deleteExpense);
+router.route("/deleteexpense").post(auth, deleteExpense);
 module.exports = router;

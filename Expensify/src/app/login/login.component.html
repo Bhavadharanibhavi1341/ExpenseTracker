@@ -13,16 +13,6 @@
           <span class="text-1">Money</span>
         </div>
       </div>
-      <div class="back">
-        <!--<img class="backImg" src="images/backImg.jpg" alt="">-->
-        <div class="text">
-          <span class="text-1"
-            >Complete miles of journey <br />
-            with one step</span
-          >
-          <span class="text-2">Let's get started</span>
-        </div>
-      </div>
     </div>
     <div class="forms">
       <div class="form-content">
@@ -40,7 +30,7 @@
                 autocomplete="on"
                 name="email"
                 required
-                placeholder="Enter your Email_id"
+                placeholder="Email"
               />
             </div>
             <div class="input-box">
@@ -49,16 +39,26 @@
                 [(ngModel)]="password"
                 id="user-password"
                 class="form-content"
-                type="password"
+                type="{{ showPassword ? 'text' : 'password' }}"
                 name="password"
                 required
-                placeholder="Enter password"
+                placeholder="Password"
               />
+              <button
+                mat-icon-button
+                type="button"
+                class="toggle-password-button"
+                (click)="togglePasswordVisibility()"
+              >
+                <mat-icon>{{
+                  showPassword ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
             </div>
 
             <!-- <div class="text"><a href="#">Forgot password?</a></div> -->
             <div class="button input-box">
-              <input type="submit" value="Sumbit" />
+              <input type="submit" value="Login" />
             </div>
             <div class="text sign-up-text">
               Don't have an account?<a routerLink="/signup" id="signup">
@@ -71,3 +71,23 @@
     </div>
   </div>
 </div>
+<ng-template #errorModal3 let-modal>
+  <div class="modal1">
+    <div class="modal-content1">
+      <div class="modal-header1">
+        <h4 class="modal-title1">Error</h4>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="modal.dismiss()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body1">
+        {{ message }}
+      </div>
+    </div>
+  </div>
+</ng-template>

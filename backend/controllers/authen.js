@@ -8,8 +8,48 @@ const {
 } = require("../errors");
 const { StatusCodes } = require("http-status-codes");
 const { json } = require("express");
+
+const getName = async (req, res) => {
+  try {
+    const userName = req.params.userName;
+
+    const existingUser = await User.findOne({ userName });
+
+    res.status(StatusCodes.OK).json({ exists: !!existingUser });
+  } catch (error) {
+    console.error("Error checking username:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+const getEmail = async (req, res) => {
+  try {
+    const email = req.params.email;
+    const existingUser = await User.findOne({ email });
+    res.status(StatusCodes.OK).json({ exists: !!existingUser });
+  } catch (error) {
+    console.error("Error checking username:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 const signup = async (req, res) => {
   console.log({ ...req.body });
+
+  const { userName, email, password } = req.body;
+  console.log(userName, email, password, "printingg");
+  const existingUser = await User.findOne({ userName });
+  if (existingUser) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ error: "Username already exists" });
+  }
+  const existingEmail = await User.findOne({ email });
+  if (existingEmail) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ error: "Email already exists" });
+  }
+
   const user = await User.create({ ...req.body });
   console.log("success");
   const token = user.createJwt();
@@ -29,11 +69,15 @@ const login = async (req, res) => {
   const user = await User.findOne({ email });
   if (!user) {
     console.log(user);
-    throw new UnauthenticatedError("user does not exists");
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ error: "user does not exists" });
   }
   const isPasswordCorrect = await user.comparePassword(password);
   if (!isPasswordCorrect) {
-    throw new UnauthenticatedError("Password is incorrect");
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ error: "password is incorrect" });
   }
   const token = user.createJwt();
   res.status(StatusCodes.OK).json({ token, user });
@@ -62,4 +106,4 @@ const forgetpassword = async (req, res) => {
   res.status(200).json({ msg: "success" });
 };
 
-module.exports = { signup, login, forgetpassword, getUsers };
+module.exports = { signup, login, forgetpassword, getUsers, getName, getEmail };

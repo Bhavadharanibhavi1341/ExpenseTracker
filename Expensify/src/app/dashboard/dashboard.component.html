@@ -1,36 +1,72 @@
-<main>
-  <header>
-    <nav>
-      <div class="menu">
-        <div class="logo">
-          <h3>Expensify</h3>
-        </div>
-        <ul>
-          <li><button>home</button></li>
-          <li><button>home</button></li>
-          <li><button>home</button></li>
-          <li><button>home</button></li>
-        </ul>
+<nav>
+  <div class="menu">
+    <div class="logo">
+      <div class="sidebutton">
+        <button (click)="toggleSidenav()">
+          <mat-icon>menu</mat-icon>
+        </button>
       </div>
-    </nav>
-  </header>
-  <article>
-    <div class="form-con">
-      <form (ngSubmit)="show(showExpenseForm)" #showExpenseForm="ngForm">
-        <input type="month" [(ngModel)]="date" name="start" />
-        <button type="submit">submit</button>
-      </form>
+      <a><h3>Expensify</h3></a>
     </div>
-  </article>
-  <aside>
-    <!-- <h3>List Items</h3> -->
-    <header>
-      <header><h3>Your Current Balance:</h3></header>
+    <ul></ul>
+  </div>
+</nav>
+
+<mat-sidenav-container class="main-container">
+  <mat-sidenav
+    #sidenav
+    mode="side"
+    class="custom-sidenav"
+    [class.open]="isSidenavOpen"
+    opened="true"
+  >
+    <mat-nav-list class="list">
+      <ul>
+        <li><button routerLink="/home">Dashboard</button></li>
+
+        <li><button (click)="openModal(template)">Add Income</button></li>
+        <li><button routerLink="/dashboard">Savings</button></li>
+        <li><button routerLink="/splitpay">Split Pay</button></li>
+        <li><button routerLink="/login" (click)="logout()">LogOut</button></li>
+      </ul>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main class="main-content">
       <article>
-        <h3>{{ this.income }}</h3>
+        <div style="width: 100%; margin: auto; height: 100%">
+          <canvas id="myLineChart"></canvas>
+        </div>
       </article>
-    </header>
-    <article>content</article>
-  </aside>
-  <footer>footer</footer>
-</main>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<ng-template #template let-modal>
+  <div class="modal-body">
+    <form (ngSubmit)="temsubmit(addTemForm)" #addTemForm="ngForm">
+      <div class="title"><h3>Update your Income</h3></div>
+
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="uIncome1"
+        name="uIncome1"
+        placeholder="Enter Current Income"
+      />
+
+      <!--
+--><br />
+      <div class="button">
+        <button type="submit" (click)="modal.dismiss('Cross click')">
+          Add
+        </button>
+      </div>
+      <div class="button">
+        <button type="button" (click)="modal.dismiss('Cross click')">
+          cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>
